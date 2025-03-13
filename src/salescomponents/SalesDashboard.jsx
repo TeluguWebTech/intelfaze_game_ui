@@ -9,10 +9,10 @@ const SalesDashboard = () => {
   return (
     <div>
       <SalesBlocks />
-      <SalesShowOver />
+      {/* <SalesShowOver />
       <SalesShowExe />
       <SalesNewClient />
-      <SalesPerformance />
+      <SalesPerformance /> */}
     </div>
   )
 }

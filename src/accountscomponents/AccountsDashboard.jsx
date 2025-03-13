@@ -9,10 +9,10 @@ const AccountsDashboard = () => {
   return (
     <div>
       <AccountBlocks />
-      <AccShowOver />
+      {/* <AccShowOver />
       <AccShowClient />
       <AccShowEmp />
-      <AccTransMgm />
+      <AccTransMgm /> */}
     </div>
   )
 }
