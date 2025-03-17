@@ -17,7 +17,7 @@ const metrics = [
   { title: "TRT Machines", value: "$53k", change: "+55% than last week", icon: DollarSign, changeType: "up", component: <TRTMacList /> },
   { title: "Locations", value: "3,462", change: "-2% than yesterday", icon: MapPin, changeType: "down", component: <TrtShowLocations /> },
   { title: "TRT Deposits", value: "8,900", change: "+2% than last month", icon: Users, changeType: "up", component: <TrtShowInstall/> },
-  { title: "TRT Pull outs", value: "$103,430", change: "+5% than yesterday", icon: BarChart, changeType: "up", component: <TrtPullOuts /> },
+  { title: "TRT Payments", value: "$103,430", change: "+5% than yesterday", icon: BarChart, changeType: "up", component: <TrtPullOuts /> },
   { title: "Services", value: "325", change: "-1% than last week", icon: Settings, changeType: "down", component: <TrtShowMaintain /> },
 ];
 

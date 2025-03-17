@@ -30,7 +30,7 @@ export default function TrtPullOuts() {
   return (
     <div className="max-w-6xl mx-auto bg-white shadow-md rounded-lg p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">TRT Pullouts</h2>
+        <h2 className="text-xl font-semibold">TRT Payments</h2>
         <button className="bg-gray-200 px-3 py-2 rounded flex items-center gap-2 hover:bg-gray-300">
           <FaDownload /> Download All
         </button>
