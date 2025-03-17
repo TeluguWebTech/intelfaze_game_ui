@@ -10,7 +10,7 @@ import NavbarComp from '../components/NavbarComp'
 const RevenueDashboard = () => {
   return (
    <div className="">
-    <NavbarComp />
+    {/* <NavbarComp /> */}
      <div>
       <RevenueBlocks />
     </div>

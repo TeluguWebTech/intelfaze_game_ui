@@ -9,13 +9,14 @@ import TrtShowMaintain from "./TrtShowMaintain";
 import TrtShowLocations from "./TrtShowLocations";
 import PageNotFound from "../PageNotFound";
 import NavbarComp from "../components/NavbarComp";
+import GameMacList from "./GameMacList";
 
 const metrics = [
-  { title: "Total TRT's", value: "2,300", change: "+3% than last month", icon: Users, changeType: "up", component: <TRTMacList /> },
-  { title: "TRT Installations", value: "$53k", change: "+55% than last week", icon: DollarSign, changeType: "up", component: <TrtShowInstall /> },
+  { title: "Game Machines", value: "2,300", change: "+3% than last month", icon: Users, changeType: "up", component: <GameMacList /> },
+  { title: "TRT Machines", value: "$53k", change: "+55% than last week", icon: DollarSign, changeType: "up", component: <TrtShowInstall /> },
   { title: "Locations", value: "3,462", change: "-2% than yesterday", icon: MapPin, changeType: "down", component: <TrtShowLocations /> },
-  { title: "TRT Sales", value: "$103,430", change: "+5% than yesterday", icon: BarChart, changeType: "up", component: <TrtShowTransactions /> },
-  { title: "Analytics", value: "8,900", change: "+2% than last month", icon: Users, changeType: "up", component: <PageNotFound /> },
+  { title: "TRT Deposits", value: "8,900", change: "+2% than last month", icon: Users, changeType: "up", component: <PageNotFound /> },
+  { title: "TRT Pull outs", value: "$103,430", change: "+5% than yesterday", icon: BarChart, changeType: "up", component: <TrtShowTransactions /> },
   { title: "Services", value: "325", change: "-1% than last week", icon: Settings, changeType: "down", component: <TrtShowMaintain /> },
 ];
 
@@ -26,7 +27,7 @@ export default function TRTDashboard() {
 
   return (
     <div>
-      <NavbarComp />
+      {/* <NavbarComp /> */}
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="bg-gray-100 px-6 py-3">
         <ul className="flex items-center space-x-1 text-sm text-gray-600">

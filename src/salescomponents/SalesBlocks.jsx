@@ -27,7 +27,7 @@ export default function AccountBlocks() {
 
   return (
     <div>
-      <NavbarComp />
+      {/* <NavbarComp /> */}
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="bg-gray-100 px-6 py-3">
         <ul className="flex items-center space-x-1 text-sm text-gray-600">

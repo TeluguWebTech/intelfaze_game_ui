@@ -68,18 +68,17 @@ const commissions = [
 ];
 
 const services = [
-  { service: "TRT Machine Setup", bookings: 150, rating: "4.8/5" },
-  { service: "Cash Deposit Processing", bookings: 120, rating: "4.7/5" },
-  { service: "Machine Maintenance", bookings: 100, rating: "4.6/5" },
-  { service: "Transaction Monitoring", bookings: 130, rating: "4.9/5" },
-  { service: "Revenue Reconciliation", bookings: 110, rating: "4.7/5" },
-  { service: "Error Handling & Support", bookings: 90, rating: "4.5/5" },
-  { service: "TRT Machine Installation", bookings: 140, rating: "4.8/5" },
-  { service: "Client Dashboard Assistance", bookings: 95, rating: "4.6/5" },
-  { service: "Employee Cash Collection", bookings: 80, rating: "4.4/5" },
-  { service: "Machine Software Update", bookings: 105, rating: "4.7/5" },
+  { service: "Haircut", bookings: 120, rating: "4.5/5" },
+  { service: "Massage", bookings: 80, rating: "4.7/5" },
+  { service: "Manicure", bookings: 90, rating: "4.6/5" },
+  { service: "Pedicure", bookings: 70, rating: "4.4/5" },
+  { service: "Facial", bookings: 100, rating: "4.8/5" },
+  { service: "Waxing", bookings: 60, rating: "4.3/5" },
+  { service: "Spa", bookings: 110, rating: "4.9/5" },
+  { service: "Makeup", bookings: 85, rating: "4.7/5" },
+  { service: "Hair Color", bookings: 95, rating: "4.6/5" },
+  { service: "Nail Art", bookings: 75, rating: "4.5/5" },
 ];
-
 
 const analytics = [
   { metric: "Total Revenue", value: "25,000 AZN" },
@@ -94,23 +93,22 @@ const analytics = [
   { metric: "Total Earnings", value: "100,000 AZN" },
 ];
 
-const CAccordian = () => {
-  const [activeTable, setActiveTable] = useState("All clients");
+const TransactionAccordian = () => {
+  const [activeTable, setActiveTable] = useState("Client Transactions");
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 5; // Number of records to display per page
 
   const tables = {
-    "All clients": {
+    "Client Transactions": {
       data: allClients,
       columns: ["Profile", "Client ID", "Name", "Location", "Contact", "No. of TRT's", "Action"],
     },
-    "Sales by TRT": { data: salesByTRT, columns: ["Transaction", "Amount", "Date", "Status"] },
-    "Sales by Matches": { data: salesByMatches, columns: ["Match", "Players", "Revenue"] },
-    "Locations": { data: locations, columns: ["Location", "Revenue", "Active Users"] },
-    "Commissions": { data: commissions, columns: ["Vendor", "Commission", "Earnings"] },
-    "Services": { data: services, columns: ["Service", "Bookings", "Rating"] },
-    "Events": { data: services, columns: ["Occassion", "Date", "Time"] },
-    "Analytics": { data: analytics, columns: ["Metric", "Value"] },
+    "Sales Transactions": { data: salesByTRT, columns: ["Transaction", "Amount", "Date", "Status"] },
+    "Employee Transactins": { data: salesByMatches, columns: ["Match", "Players", "Revenue"] },
+    "Account Transactions": { data: locations, columns: ["Location", "Revenue", "Active Users"] },
+    // "Commissions": { data: commissions, columns: ["Vendor", "Commission", "Earnings"] },
+    // "Services": { data: services, columns: ["Service", "Bookings", "Rating"] },
+    // "Analytics": { data: analytics, columns: ["Metric", "Value"] },
   };
 
   // Pagination logic
@@ -226,4 +224,4 @@ const CAccordian = () => {
   );
 };
 
-export default CAccordian;
+export default TransactionAccordian;

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FaEdit, FaTrash, FaEnvelope, FaHome, FaChevronRight } from "react-icons/fa";
-import NavbarComp from "../components/NavbarComp";
-import ContactAccordian from "./ContactAccordian";
+import TransactionAccordian from "./TransactionAccordian";
 
 const members = [
   {
@@ -56,7 +55,7 @@ const members = [
   },
 ];
 
-const ContactTable = () => {
+const BannerTransactions = () => {
   const [data, setData] = useState(members);
 
   const handleDelete = (id) => {
@@ -64,20 +63,19 @@ const ContactTable = () => {
   };
 
   return (
-    <>
+ <>
       {/* Breadcrumbs */}
       <div className="flex items-center text-gray-600 text-sm mb-4">
         <FaHome className="mr-1 text-blue-500" />
         <a href="/" className="hover:underline">Home</a>
         <FaChevronRight className="mx-2 text-gray-400" />
-        <span className="text-gray-500">Contacts</span>
+        <span className="text-gray-500">Transactions</span>
       </div>
-
-      <div className="">
-        <ContactAccordian />
-      </div>
-    </>
+    <div className="">
+      <TransactionAccordian />
+    </div>
+ </>
   );
 };
 
-export default ContactTable;
+export default BannerTransactions;

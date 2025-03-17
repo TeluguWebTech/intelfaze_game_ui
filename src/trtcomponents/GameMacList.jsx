@@ -45,7 +45,7 @@ const roles = [
   },
 ];
 
-const TRTMacList = () => {
+const GameMacList = () => {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="max-w-5xl mx-auto">
@@ -72,4 +72,4 @@ const TRTMacList = () => {
   );
 };
 
-export default TRTMacList;
+export default GameMacList;

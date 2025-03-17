@@ -9,10 +9,10 @@ const EmpDashboard = () => {
   return (
     <div>
       <EmpBlocks />
-      <EmpShowAll />
+      {/* <EmpShowAll />
       <EmpShowPay />
       <EmpShowTask />
-      <EmpShowPerf />
+      <EmpShowPerf /> */}
     </div>
   )
 }

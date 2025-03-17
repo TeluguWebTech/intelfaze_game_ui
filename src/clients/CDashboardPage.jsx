@@ -132,7 +132,7 @@ const Breadcrumbs = () => {
 const CDashboardPage = () => {
   return (
  <div className="">
-  <NavbarComp />
+  {/* <NavbarComp /> */}
      <div className="p-4 bg-gray-100">
       {/* Breadcrumbs */}
       <Breadcrumbs />

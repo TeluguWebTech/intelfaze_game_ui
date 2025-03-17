@@ -80,37 +80,10 @@ const NavbarComp = () => {
 
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-3 flex justify-between items-center shadow-md relative">
-      {/* Breadcrumb Navigation */}
-      <div>
-        <nav aria-label="Breadcrumb">
-          <ul className="text-gray-200 text-sm flex items-center space-x-1">
-            <li>
-              <Link to="/" className="hover:text-white transition-colors duration-200">
-                Dashboard
-              </Link>
-            </li>
-            {pathnames.map((name, index) => {
-              const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
-              const isLast = index === pathnames.length - 1;
-              return (
-                <li key={routeTo} className="flex items-center">
-                  <span className="text-gray-300 mx-1">/</span>
-                  {isLast ? (
-                    <span className="text-white font-medium">{name}</span>
-                  ) : (
-                    <Link to={routeTo} className="hover:text-white transition-colors duration-200">
-                      {name}
-                    </Link>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-        <h1 className="text-lg font-bold text-white capitalize mt-1">
-          {pathnames[pathnames.length - 1] || "Home"}
-        </h1>
+      <div className="title text-3xl text-white">
+        Intelfaze
       </div>
+
 
       {/* Mega Menu */}
       <div className="flex space-x-6">

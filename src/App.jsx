@@ -20,6 +20,11 @@ import CShowMatches from './clients/CShowMatches';
 import PageNotFound from './PageNotFound';
 import CShowComision from './clients/CShowComision';
 import CServicesShow from './clients/CServicesShow';
+import NavbarComp from './components/NavbarComp';
+import BannerTransactions from './components/BannerTransactions';
+import BannerTasks from './components/BannerTasks';
+import BannerEvents from './components/BannerEvents';
+import ComingSoon from './components/ComingSoon';
 
 
 
@@ -38,7 +43,7 @@ const App = () => {
     {/* <AccountsDashboard /> */}
     {/* <RevenueDashboard /> */}
     {/* <TRTDashboard /> */}
-
+    <NavbarComp />
     <Routes>
       <Route path='/' element={<LandingPage />} />
       <Route path="/clients" element={<ClientCRM />} />
@@ -54,6 +59,12 @@ const App = () => {
       <Route path="/not-found" element={ <PageNotFound />} />
       <Route path="/commissions" element={ <CShowComision />} />
       <Route path="/client-services" element={ <CServicesShow />} />
+      <Route path="/employees" element={ <EmpDashboard />} />
+      <Route path="/contacts" element={ <ContactTable />} />
+      <Route path="/transactions" element={ <BannerTransactions />} />
+      <Route path="/tasks" element={ <BannerTasks/>} />
+      <Route path="/add-event" element={ <BannerEvents/>} />
+      <Route path="/inventory" element={ <ComingSoon />} />
     </Routes>
     
 
