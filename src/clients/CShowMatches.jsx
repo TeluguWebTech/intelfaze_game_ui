@@ -113,7 +113,7 @@ export default function CShowMatches() {
         </button>
       </div>
       <table className="w-full text-left border-collapse">
-        <thead>
+        <thead className="bg-rose-800 text-white">
           <tr className="border-b font-semibold">
             <th className="py-2">Game Machine</th>
             <th className="py-2">Location</th>

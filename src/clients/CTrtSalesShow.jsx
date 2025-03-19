@@ -214,7 +214,7 @@ export default function CTrtSalesShow() {
       </div>
 
       <table className="w-full text-left border-collapse">
-        <thead>
+        <thead className="bg-fuchsia-800 text-white">
           <tr className="border-b font-semibold">
             <th className="py-2">Invoice</th>
             <th className="py-2">Date</th>

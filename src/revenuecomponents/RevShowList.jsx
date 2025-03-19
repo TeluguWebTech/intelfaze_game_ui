@@ -110,7 +110,7 @@ const RevShowList = () => {
       </div>
       <table className="w-full text-left">
         <thead>
-          <tr className="border-b">
+          <tr className="border-b bg-gray-500 text-white">
             <th className="p-3">Client Name</th>
             <th className="p-3">Period</th>
             <th className="p-3">Revenue</th>
