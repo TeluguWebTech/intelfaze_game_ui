@@ -65,6 +65,8 @@ const App = () => {
       <Route path="/tasks" element={ <BannerTasks/>} />
       <Route path="/add-event" element={ <BannerEvents/>} />
       <Route path="/inventory" element={ <ComingSoon />} />
+      <Route path="/hr" element={ <ComingSoon />} />
+      <Route path="/customers" element={ <ComingSoon />} />
     </Routes>
     
 

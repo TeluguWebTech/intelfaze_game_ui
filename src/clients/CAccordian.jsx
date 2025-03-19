@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
+
+const getYesterdayDate = () => {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  return yesterday.toISOString().split("T")[0];
+};
 
 // Sample data with more records
 const allClients = [
@@ -15,56 +21,56 @@ const allClients = [
   { id: "CL-010", name: "Ivy Taylor", location: "Baku", contact: "+994 50 888 99 00", trts: 5, image: "https://i.pravatar.cc/50?img=10" },
 ];
 
-const salesByTRT = [
-  { transaction: "TRT-001", amount: "100 AZN", date: "27.11.2023", status: "100%" },
-  { transaction: "TRT-002", amount: "200 AZN", date: "28.11.2023", status: "50%" },
-  { transaction: "TRT-003", amount: "150 AZN", date: "29.11.2023", status: "75%" },
-  { transaction: "TRT-004", amount: "300 AZN", date: "30.11.2023", status: "100%" },
-  { transaction: "TRT-005", amount: "250 AZN", date: "01.12.2023", status: "50%" },
-  { transaction: "TRT-006", amount: "400 AZN", date: "02.12.2023", status: "100%" },
-  { transaction: "TRT-007", amount: "350 AZN", date: "03.12.2023", status: "75%" },
-  { transaction: "TRT-008", amount: "500 AZN", date: "04.12.2023", status: "100%" },
-  { transaction: "TRT-009", amount: "450 AZN", date: "05.12.2023", status: "50%" },
-  { transaction: "TRT-010", amount: "600 AZN", date: "06.12.2023", status: "100%" },
+const initialSalesByTRT = [
+  { trtId: "TRT-001", period: getYesterdayDate(), location: "Baku", client: "ABC Gaming Center", deposits: "$500", payments: "$250", carryingAmount: "$250" },
+  { trtId: "TRT-002", period: getYesterdayDate(), location: "Ganja", client: "XYZ Entertainment", deposits: "$700", payments: "$350", carryingAmount: "$350" },
+  { trtId: "TRT-003", period: getYesterdayDate(), location: "Sumqayit", client: "GameZone Hub", deposits: "$600", payments: "$400", carryingAmount: "$200" },
+  { trtId: "TRT-004", period: getYesterdayDate(), location: "Shaki", client: "Royal Gaming", deposits: "$800", payments: "$500", carryingAmount: "$300" },
+  { trtId: "TRT-005", period: getYesterdayDate(), location: "Lankaran", client: "TopPlay Club", deposits: "$550", payments: "$250", carryingAmount: "$300" },
+  { trtId: "TRT-006", period: getYesterdayDate(), location: "Mingachevir", client: "FunWorld", deposits: "$900", payments: "$600", carryingAmount: "$300" },
+  { trtId: "TRT-007", period: getYesterdayDate(), location: "Gabala", client: "GameFest Arena", deposits: "$400", payments: "$200", carryingAmount: "$200" },
+  { trtId: "TRT-008", period: getYesterdayDate(), location: "Shamakhi", client: "TurboPlay Zone", deposits: "$750", payments: "$500", carryingAmount: "$250" },
+  { trtId: "TRT-009", period: getYesterdayDate(), location: "Zagatala", client: "HyperGames", deposits: "$850", payments: "$600", carryingAmount: "$250" },
+  { trtId: "TRT-010", period: getYesterdayDate(), location: "Nakhchivan", client: "Elite Gaming Club", deposits: "$1000", payments: "$700", carryingAmount: "$300" },
 ];
 
-const salesByMatches = [
-  { match: "Game A", players: 120, revenue: "2500 AZN" },
-  { match: "Game B", players: 80, revenue: "1800 AZN" },
-  { match: "Game C", players: 150, revenue: "3000 AZN" },
-  { match: "Game D", players: 90, revenue: "2000 AZN" },
-  { match: "Game E", players: 200, revenue: "5000 AZN" },
-  { match: "Game F", players: 100, revenue: "2200 AZN" },
-  { match: "Game G", players: 130, revenue: "2700 AZN" },
-  { match: "Game H", players: 70, revenue: "1500 AZN" },
-  { match: "Game I", players: 180, revenue: "4000 AZN" },
-  { match: "Game J", players: 110, revenue: "2300 AZN" },
+const initialSalesByMatches = [
+  { gameMachineId: "GM-001", period: "March 2025", location: "Baku", client: "Client A", noOfGames: 120, revenue: "2500 AZN" },
+  { gameMachineId: "GM-002", period: "March 2025", location: "Ganja", client: "Client B", noOfGames: 80, revenue: "1800 AZN" },
+  { gameMachineId: "GM-003", period: "March 2025", location: "Sumqayit", client: "Client C", noOfGames: 150, revenue: "3000 AZN" },
+  { gameMachineId: "GM-004", period: "March 2025", location: "Shaki", client: "Client D", noOfGames: 90, revenue: "2000 AZN" },
+  { gameMachineId: "GM-005", period: "March 2025", location: "Lankaran", client: "Client E", noOfGames: 200, revenue: "5000 AZN" },
+  { gameMachineId: "GM-006", period: "March 2025", location: "Mingachevir", client: "Client F", noOfGames: 100, revenue: "2200 AZN" },
+  { gameMachineId: "GM-007", period: "March 2025", location: "Nakhchivan", client: "Client G", noOfGames: 130, revenue: "2700 AZN" },
+  { gameMachineId: "GM-008", period: "March 2025", location: "Shirvan", client: "Client H", noOfGames: 70, revenue: "1500 AZN" },
+  { gameMachineId: "GM-009", period: "March 2025", location: "Gabala", client: "Client I", noOfGames: 180, revenue: "4000 AZN" },
+  { gameMachineId: "GM-010", period: "March 2025", location: "Zagatala", client: "Client J", noOfGames: 110, revenue: "2300 AZN" },
 ];
 
 const locations = [
-  { location: "Baku Mall", revenue: "5000 AZN", activeUsers: 320 },
-  { location: "Ganja City", revenue: "3000 AZN", activeUsers: 210 },
-  { location: "Sumqayit Plaza", revenue: "4000 AZN", activeUsers: 150 },
-  { location: "Baku Tower", revenue: "6000 AZN", activeUsers: 400 },
-  { location: "Ganja Park", revenue: "2500 AZN", activeUsers: 180 },
-  { location: "Sumqayit Center", revenue: "3500 AZN", activeUsers: 220 },
-  { location: "Baku Square", revenue: "4500 AZN", activeUsers: 300 },
-  { location: "Ganja Mall", revenue: "2000 AZN", activeUsers: 120 },
-  { location: "Sumqayit Tower", revenue: "5500 AZN", activeUsers: 350 },
-  { location: "Baku Park", revenue: "1500 AZN", activeUsers: 100 },
+  { location: "New York Plaza", client: "Client A", trtMachines: 10, gameMachines: 50, actions: <FaEye /> },
+  { location: "Los Angeles Center", client: "Client B", trtMachines: 8, gameMachines: 40, actions: <FaEye />},
+  { location: "Chicago Arcade", client: "Client C", trtMachines: 12, gameMachines: 55, actions: <FaEye /> },
+  { location: "Houston Mall", client: "Client D", trtMachines: 15, gameMachines: 70, actions: <FaEye /> },
+  { location: "Phoenix Plaza", client: "Client E", trtMachines: 7, gameMachines: 35, actions: <FaEye /> },
+  { location: "Philadelphia Park", client: "Client F", trtMachines: 9, gameMachines: 45, actions: <FaEye /> },
+  { location: "San Antonio Arcade", client: "Client G", trtMachines: 11, gameMachines: 60, actions: <FaEye /> },
+  { location: "San Diego Tower", client: "Client H", trtMachines: 6, gameMachines: 30, actions: <FaEye /> },
+  { location: "Dallas Square", client: "Client I", trtMachines: 13, gameMachines: 65, actions: <FaEye /> },
+  { location: "San Jose Mall", client: "Client J", trtMachines: 5, gameMachines: 25, actions: <FaEye /> },
 ];
 
-const commissions = [
-  { vendor: "Vendor A", commission: "15%", earnings: "500 AZN" },
-  { vendor: "Vendor B", commission: "12%", earnings: "400 AZN" },
-  { vendor: "Vendor C", commission: "10%", earnings: "300 AZN" },
-  { vendor: "Vendor D", commission: "18%", earnings: "600 AZN" },
-  { vendor: "Vendor E", commission: "14%", earnings: "450 AZN" },
-  { vendor: "Vendor F", commission: "16%", earnings: "550 AZN" },
-  { vendor: "Vendor G", commission: "11%", earnings: "350 AZN" },
-  { vendor: "Vendor H", commission: "13%", earnings: "420 AZN" },
-  { vendor: "Vendor I", commission: "17%", earnings: "580 AZN" },
-  { vendor: "Vendor J", commission: "19%", earnings: "700 AZN" },
+const initialSalesByCommission = [
+  { vendor: "Vendor A",period:getYesterdayDate(), commission: "15%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor B",period:getYesterdayDate(), commission: "12%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor C",period:getYesterdayDate(), commission: "10%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor D",period:getYesterdayDate(), commission: "18%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor E",period:getYesterdayDate(), commission: "14%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor F",period:getYesterdayDate(), commission: "16%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor G",period:getYesterdayDate(), commission: "11%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor H",period:getYesterdayDate(), commission: "13%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor I",period:getYesterdayDate(), commission: "17%", earnings: "NA", paid:"NA", pending:"NA"  },
+  { vendor: "Vendor J",period:getYesterdayDate(), commission: "19%", earnings: "NA", paid:"NA", pending:"NA"  },
 ];
 
 const services = [
@@ -79,7 +85,6 @@ const services = [
   { service: "Employee Cash Collection", bookings: 80, rating: "4.4/5" },
   { service: "Machine Software Update", bookings: 105, rating: "4.7/5" },
 ];
-
 
 const analytics = [
   { metric: "Total Revenue", value: "25,000 AZN" },
@@ -97,20 +102,53 @@ const analytics = [
 const CAccordian = () => {
   const [activeTable, setActiveTable] = useState("All clients");
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 5; // Number of records to display per page
+  const [selectedClient, setSelectedClient] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(getYesterdayDate());
+  const [salesByTRT, setSalesByTRT] = useState(initialSalesByTRT);
+  const [salesByMatches, setSalesByMatches] = useState(initialSalesByMatches);
+  const [salesByCommission, setSalesByCommission] = useState(initialSalesByCommission)
+
+  const recordsPerPage = 5;
+
+  useEffect(() => {
+    // Update the period in salesByTRT and salesByMatches when the selected date changes
+    const updatedSalesByTRT = initialSalesByTRT.map((sale) => ({
+      ...sale,
+      period: selectedDate,
+    }));
+    const updatedSalesByMatches = initialSalesByMatches.map((sale) => ({
+      ...sale,
+      period: selectedDate,
+    }));
+    const updatedSalesByCommission = initialSalesByCommission.map((sale) => ({
+      ...sale,
+      period: selectedDate,
+    }));
+
+    setSalesByTRT(updatedSalesByTRT);
+    setSalesByMatches(updatedSalesByMatches);
+    setSalesByCommission(updatedSalesByCommission)
+  }, [selectedDate]);
+
+  const handleViewClient = (client) => {
+    setSelectedClient(client);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedClient(null);
+  };
 
   const tables = {
     "All clients": {
       data: allClients,
       columns: ["Profile", "Client ID", "Name", "Location", "Contact", "No. of TRT's", "Action"],
     },
-    "Sales by TRT": { data: salesByTRT, columns: ["Transaction", "Amount", "Date", "Status"] },
-    "Sales by Matches": { data: salesByMatches, columns: ["Match", "Players", "Revenue"] },
-    "Locations": { data: locations, columns: ["Location", "Revenue", "Active Users"] },
-    "Commissions": { data: commissions, columns: ["Vendor", "Commission", "Earnings"] },
-    "Services": { data: services, columns: ["Service", "Bookings", "Rating"] },
-    "Events": { data: services, columns: ["Occassion", "Date", "Time"] },
-    "Analytics": { data: analytics, columns: ["Metric", "Value"] },
+    "TRT Machines": { data: salesByTRT, columns: ["Trt Machine Id","Period", "Location", "Client", "Deposits", "Withdrawls", "Carrying Amount"] },
+    "Game Machines": { data: salesByMatches, columns: ["Game Machine ID", "Period", "Location", "Client", "No. of Matches", "Revenue"] },
+    "Locations": { data: locations, columns: ["Locations", "Client","TRT Machines", "Game Machines", "Actions" ] },
+    "Commissions": { data: salesByCommission, columns: ["Vendor","Period", "Commission", "Earnings", "Paid", "Pending"] },
+    // "Services": { data: services, columns: ["Service", "Bookings", "Rating"] },
+    // "Analytics": { data: analytics, columns: ["Metric", "Value"] },
   };
 
   // Pagination logic
@@ -138,12 +176,18 @@ const CAccordian = () => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
       <div className="flex flex-wrap justify-center gap-2 mb-4">
+        <input
+          className="border border-gray-800 p-2 rounded"
+          type="date"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+        />
         {Object.keys(tables).map((type) => (
           <button
             key={type}
             onClick={() => {
               setActiveTable(type);
-              setCurrentPage(1); // Reset to the first page when switching tables
+              setCurrentPage(1);
             }}
             className={`px-4 py-2 rounded-lg transition-all duration-300 min-w-[140px] text-center ${
               activeTable === type ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
@@ -163,67 +207,84 @@ const CAccordian = () => {
               ))}
             </tr>
           </thead>
-          <tbody>
-            {currentRecords.map((row, rowIndex) => (
-              <tr key={rowIndex} className="border-b hover:bg-gray-50 transition-all">
-                {activeTable === "All clients" ? (
-                  <>
-                    <td className="p-3"><img src={row.image} alt={row.name} className="w-10 h-10 rounded-full" /></td>
-                    <td className="p-3 text-green-950">{row.id}</td>
-                    <td className="p-3 text-gray-700">{row.name}</td>
-                    <td className="p-3 text-gray-700">{row.location}</td>
-                    <td className="p-3 text-gray-700">{row.contact}</td>
-                    <td className="p-3 text-gray-700">{row.trts}</td>
-                    <td className="p-3 space-x-2">
-                      <button className="text-blue-500 hover:text-blue-700">
-                        <FaEye />
-                      </button>
-                      <button className="text-red-500 hover:text-red-700">
-                        <FaTrash />
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  Object.values(row).map((value, colIndex) => (
-                    <td key={colIndex} className="p-3 text-gray-700">{value}</td>
-                  ))
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Pagination Controls */}
-      <div className="flex justify-center items-center gap-2 mt-4">
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
-        >
-          Previous
-        </button>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <button
-            key={page}
-            onClick={() => handlePageChange(page)}
-            className={`px-4 py-2 rounded-lg ${
-              currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
-            }`}
-          >
-            {page}
-          </button>
-        ))}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default CAccordian;
+         <tbody>
+                   {currentRecords.map((row, rowIndex) => (
+                     <tr key={rowIndex} className="border-b hover:bg-gray-50 transition-all">
+                       {activeTable === "All clients" ? (
+                         <>
+                           <td className="p-3 cursor-pointer"  onClick={() => handleViewClient(row)}><img src={row.image} alt={row.name} className="w-10 h-10 rounded-full" /></td>
+                           <td className="p-3 text-green-950 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.id}</td>
+                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.name}</td>
+                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.location}</td>
+                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.contact}</td>
+                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.trts}</td>
+                           <td className="p-3 space-x-2">
+                             <button className="text-blue-500 hover:text-blue-700" onClick={() => handleViewClient(row)}>
+                               <FaEye />
+                             </button>
+                             <button className="text-red-500 hover:text-red-700">
+                               <FaTrash />
+                             </button>
+                           </td>
+                         </>
+                       ) : (
+                         Object.values(row).map((value, colIndex) => (
+                           <td key={colIndex} className="p-3 text-gray-700">{value}</td>
+                         ))
+                       )}
+                     </tr>
+                   ))}
+                 </tbody>
+               </table>
+             </div>
+       
+             {/* Pagination Controls */}
+             <div className="flex justify-center items-center gap-2 mt-4">
+               <button
+                 onClick={handlePreviousPage}
+                 disabled={currentPage === 1}
+                 className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
+               >
+                 Previous
+               </button>
+               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                 <button
+                   key={page}
+                   onClick={() => handlePageChange(page)}
+                   className={`px-4 py-2 rounded-lg ${
+                     currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
+                   }`}
+                 >
+                   {page}
+                 </button>
+               ))}
+               <button
+                 onClick={handleNextPage}
+                 disabled={currentPage === totalPages}
+                 className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
+               >
+                 Next
+               </button>
+             </div>
+       
+             {/* Modal for Client Details */}
+             {selectedClient && (
+               <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                 <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                   <h2 className="text-xl font-semibold mb-2">Client Details</h2>
+                   <img src={selectedClient.image} alt={selectedClient.name} className="w-20 h-20 rounded-full mx-auto" />
+                   <p className="mt-3"><strong>Name:</strong> {selectedClient.name}</p>
+                   <p><strong>Location:</strong> {selectedClient.location}</p>
+                   <p><strong>Contact:</strong> {selectedClient.contact}</p>
+                   <p><strong>No. of TRT's:</strong> {selectedClient.trts}</p>
+                   <button className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onClick={handleCloseModal}>
+                     Close
+                   </button>
+                 </div>
+               </div>
+             )}
+           </div>
+         );
+       };
+       
+       export default CAccordian;

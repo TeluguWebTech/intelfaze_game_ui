@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaEdit, FaTrash, FaEnvelope, FaHome, FaChevronRight } from "react-icons/fa";
 import NavbarComp from "../components/NavbarComp";
 import ContactAccordian from "./ContactAccordian";
+import { Link } from "react-router-dom";
 
 const members = [
   {
@@ -68,9 +69,11 @@ const ContactTable = () => {
       {/* Breadcrumbs */}
       <div className="flex items-center text-gray-600 text-sm mb-4">
         <FaHome className="mr-1 text-blue-500" />
-        <a href="/" className="hover:underline">Home</a>
+        <Link to="/">
+        Home
+        </Link>
         <FaChevronRight className="mx-2 text-gray-400" />
-        <span className="text-gray-500">Contacts</span>
+        <span className=" text-green-500">Contacts</span>
       </div>
 
       <div className="">

@@ -88,7 +88,9 @@ export default function TRTDashboard() {
       </div>
 
       {/* Show Corresponding Component */}
-      <div className="showComponent p-6">{selectedComponent}</div>
+      <div className="showComponent p-6">
+        {selectedComponent}
+        </div>
     </div>
   );
 }

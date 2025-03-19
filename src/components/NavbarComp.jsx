@@ -81,7 +81,9 @@ const NavbarComp = () => {
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-3 flex justify-between items-center shadow-md relative">
       <div className="title text-3xl text-white">
+        <Link to="/">
         Intelfaze
+        </Link>
       </div>
 
 

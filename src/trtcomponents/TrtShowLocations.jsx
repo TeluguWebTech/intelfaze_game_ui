@@ -35,7 +35,7 @@ export default function TrtShowLocations() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <div className=" bg-white shadow-md rounded-lg p-6">
       <div className="flex justify-center mb-6 space-x-4">
         <button
           onClick={() => setActiveTab("game")}

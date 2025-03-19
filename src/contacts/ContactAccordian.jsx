@@ -1,97 +1,42 @@
 import React, { useState } from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
 
-// Sample data with more records
+// Sample data for Client Contacts
 const allClients = [
-  { id: "CL-001", name: "John Doe", location: "Baku", contact: "+994 50 123 45 67", trts: 5, image: "https://i.pravatar.cc/50?img=1" },
-  { id: "CL-002", name: "Jane Smith", location: "Ganja", contact: "+994 55 987 65 43", trts: 3, image: "https://i.pravatar.cc/50?img=2" },
-  { id: "CL-003", name: "Alice Johnson", location: "Sumqayit", contact: "+994 70 555 44 33", trts: 7, image: "https://i.pravatar.cc/50?img=3" },
-  { id: "CL-004", name: "Bob Brown", location: "Baku", contact: "+994 51 222 33 44", trts: 2, image: "https://i.pravatar.cc/50?img=4" },
-  { id: "CL-005", name: "Charlie Davis", location: "Ganja", contact: "+994 55 777 88 99", trts: 4, image: "https://i.pravatar.cc/50?img=5" },
-  { id: "CL-006", name: "Eve White", location: "Baku", contact: "+994 50 999 88 77", trts: 6, image: "https://i.pravatar.cc/50?img=6" },
-  { id: "CL-007", name: "Frank Wilson", location: "Sumqayit", contact: "+994 70 111 22 33", trts: 1, image: "https://i.pravatar.cc/50?img=7" },
-  { id: "CL-008", name: "Grace Lee", location: "Baku", contact: "+994 51 444 55 66", trts: 8, image: "https://i.pravatar.cc/50?img=8" },
-  { id: "CL-009", name: "Henry Moore", location: "Ganja", contact: "+994 55 666 77 88", trts: 3, image: "https://i.pravatar.cc/50?img=9" },
-  { id: "CL-010", name: "Ivy Taylor", location: "Baku", contact: "+994 50 888 99 00", trts: 5, image: "https://i.pravatar.cc/50?img=10" },
+  { id: "CL-001", name: "John Doe", location: "New York, NY", contact: "+1 212-555-1234", trts: 5, image: "https://i.pravatar.cc/50?img=1" },
+  { id: "CL-002", name: "Jane Smith", location: "Los Angeles, CA", contact: "+1 310-555-5678", trts: 3, image: "https://i.pravatar.cc/50?img=2" },
+  { id: "CL-003", name: "Alice Johnson", location: "Chicago, IL", contact: "+1 312-555-9876", trts: 7, image: "https://i.pravatar.cc/50?img=3" },
+  { id: "CL-004", name: "Bob Brown", location: "Houston, TX", contact: "+1 713-555-6543", trts: 2, image: "https://i.pravatar.cc/50?img=4" },
+  { id: "CL-005", name: "Charlie Davis", location: "Miami, FL", contact: "+1 305-555-7890", trts: 4, image: "https://i.pravatar.cc/50?img=5" },
 ];
 
-const salesByTRT = [
-  { transaction: "TRT-001", amount: "100 AZN", date: "27.11.2023", status: "100%" },
-  { transaction: "TRT-002", amount: "200 AZN", date: "28.11.2023", status: "50%" },
-  { transaction: "TRT-003", amount: "150 AZN", date: "29.11.2023", status: "75%" },
-  { transaction: "TRT-004", amount: "300 AZN", date: "30.11.2023", status: "100%" },
-  { transaction: "TRT-005", amount: "250 AZN", date: "01.12.2023", status: "50%" },
-  { transaction: "TRT-006", amount: "400 AZN", date: "02.12.2023", status: "100%" },
-  { transaction: "TRT-007", amount: "350 AZN", date: "03.12.2023", status: "75%" },
-  { transaction: "TRT-008", amount: "500 AZN", date: "04.12.2023", status: "100%" },
-  { transaction: "TRT-009", amount: "450 AZN", date: "05.12.2023", status: "50%" },
-  { transaction: "TRT-010", amount: "600 AZN", date: "06.12.2023", status: "100%" },
+// Sample data for Sales Contacts
+const salesContacts = [
+  { id: "SL-001", name: "Michael Scott", location: "Scranton, PA", contact: "+1 570-555-1010", sales: 10, image: "https://i.pravatar.cc/50?img=6" },
+  { id: "SL-002", name: "Pam Beesly", location: "San Francisco, CA", contact: "+1 415-555-2020", sales: 8, image: "https://i.pravatar.cc/50?img=7" },
+  { id: "SL-003", name: "Jim Halpert", location: "Seattle, WA", contact: "+1 206-555-3030", sales: 12, image: "https://i.pravatar.cc/50?img=8" },
+  { id: "SL-004", name: "Dwight Schrute", location: "Austin, TX", contact: "+1 512-555-4040", sales: 15, image: "https://i.pravatar.cc/50?img=9" },
+  { id: "SL-005", name: "Angela Martin", location: "Denver, CO", contact: "+1 303-555-5050", sales: 9, image: "https://i.pravatar.cc/50?img=10" },
 ];
 
-const salesByMatches = [
-  { match: "Game A", players: 120, revenue: "2500 AZN" },
-  { match: "Game B", players: 80, revenue: "1800 AZN" },
-  { match: "Game C", players: 150, revenue: "3000 AZN" },
-  { match: "Game D", players: 90, revenue: "2000 AZN" },
-  { match: "Game E", players: 200, revenue: "5000 AZN" },
-  { match: "Game F", players: 100, revenue: "2200 AZN" },
-  { match: "Game G", players: 130, revenue: "2700 AZN" },
-  { match: "Game H", players: 70, revenue: "1500 AZN" },
-  { match: "Game I", players: 180, revenue: "4000 AZN" },
-  { match: "Game J", players: 110, revenue: "2300 AZN" },
+// Sample data for Employee Contacts
+const employeeContacts = [
+  { id: "EM-001", name: "Kevin Malone", location: "Boston, MA", contact: "+1 617-555-6060", role: "Developer", image: "https://i.pravatar.cc/50?img=11" },
+  { id: "EM-002", name: "Stanley Hudson", location: "Atlanta, GA", contact: "+1 404-555-7070", role: "Manager", image: "https://i.pravatar.cc/50?img=12" },
+  { id: "EM-003", name: "Phyllis Vance", location: "Las Vegas, NV", contact: "+1 702-555-8080", role: "Designer", image: "https://i.pravatar.cc/50?img=13" },
+  { id: "EM-004", name: "Ryan Howard", location: "Phoenix, AZ", contact: "+1 602-555-9090", role: "Intern", image: "https://i.pravatar.cc/50?img=14" },
+  { id: "EM-005", name: "Kelly Kapoor", location: "Orlando, FL", contact: "+1 407-555-1111", role: "Marketing", image: "https://i.pravatar.cc/50?img=15" },
 ];
 
-const locations = [
-  { location: "Baku Mall", revenue: "5000 AZN", activeUsers: 320 },
-  { location: "Ganja City", revenue: "3000 AZN", activeUsers: 210 },
-  { location: "Sumqayit Plaza", revenue: "4000 AZN", activeUsers: 150 },
-  { location: "Baku Tower", revenue: "6000 AZN", activeUsers: 400 },
-  { location: "Ganja Park", revenue: "2500 AZN", activeUsers: 180 },
-  { location: "Sumqayit Center", revenue: "3500 AZN", activeUsers: 220 },
-  { location: "Baku Square", revenue: "4500 AZN", activeUsers: 300 },
-  { location: "Ganja Mall", revenue: "2000 AZN", activeUsers: 120 },
-  { location: "Sumqayit Tower", revenue: "5500 AZN", activeUsers: 350 },
-  { location: "Baku Park", revenue: "1500 AZN", activeUsers: 100 },
+// Sample data for Tech Contacts
+const techContacts = [
+  { id: "TC-001", name: "Andy Bernard", location: "San Diego, CA", contact: "+1 619-555-1212", expertise: "Networking", image: "https://i.pravatar.cc/50?img=16" },
+  { id: "TC-002", name: "Oscar Martinez", location: "Dallas, TX", contact: "+1 214-555-1313", expertise: "Security", image: "https://i.pravatar.cc/50?img=17" },
+  { id: "TC-003", name: "Creed Bratton", location: "Philadelphia, PA", contact: "+1 215-555-1414", expertise: "Cloud", image: "https://i.pravatar.cc/50?img=18" },
+  { id: "TC-004", name: "Darryl Philbin", location: "Charlotte, NC", contact: "+1 704-555-1515", expertise: "DevOps", image: "https://i.pravatar.cc/50?img=19" },
+  { id: "TC-005", name: "Toby Flenderson", location: "Detroit, MI", contact: "+1 313-555-1616", expertise: "AI/ML", image: "https://i.pravatar.cc/50?img=20" },
 ];
 
-const commissions = [
-  { vendor: "Vendor A", commission: "15%", earnings: "500 AZN" },
-  { vendor: "Vendor B", commission: "12%", earnings: "400 AZN" },
-  { vendor: "Vendor C", commission: "10%", earnings: "300 AZN" },
-  { vendor: "Vendor D", commission: "18%", earnings: "600 AZN" },
-  { vendor: "Vendor E", commission: "14%", earnings: "450 AZN" },
-  { vendor: "Vendor F", commission: "16%", earnings: "550 AZN" },
-  { vendor: "Vendor G", commission: "11%", earnings: "350 AZN" },
-  { vendor: "Vendor H", commission: "13%", earnings: "420 AZN" },
-  { vendor: "Vendor I", commission: "17%", earnings: "580 AZN" },
-  { vendor: "Vendor J", commission: "19%", earnings: "700 AZN" },
-];
-
-const services = [
-  { service: "Haircut", bookings: 120, rating: "4.5/5" },
-  { service: "Massage", bookings: 80, rating: "4.7/5" },
-  { service: "Manicure", bookings: 90, rating: "4.6/5" },
-  { service: "Pedicure", bookings: 70, rating: "4.4/5" },
-  { service: "Facial", bookings: 100, rating: "4.8/5" },
-  { service: "Waxing", bookings: 60, rating: "4.3/5" },
-  { service: "Spa", bookings: 110, rating: "4.9/5" },
-  { service: "Makeup", bookings: 85, rating: "4.7/5" },
-  { service: "Hair Color", bookings: 95, rating: "4.6/5" },
-  { service: "Nail Art", bookings: 75, rating: "4.5/5" },
-];
-
-const analytics = [
-  { metric: "Total Revenue", value: "25,000 AZN" },
-  { metric: "Total Clients", value: 350 },
-  { metric: "Active Users", value: 1200 },
-  { metric: "Total Bookings", value: 500 },
-  { metric: "Total Services", value: 10 },
-  { metric: "Total Vendors", value: 15 },
-  { metric: "Total Locations", value: 5 },
-  { metric: "Total Matches", value: 20 },
-  { metric: "Total TRTs", value: 50 },
-  { metric: "Total Earnings", value: "100,000 AZN" },
-];
 
 const ContactAccordian = () => {
   const [activeTable, setActiveTable] = useState("Client Contacts");
@@ -103,12 +48,18 @@ const ContactAccordian = () => {
       data: allClients,
       columns: ["Profile", "Client ID", "Name", "Location", "Contact", "No. of TRT's", "Action"],
     },
-    "Sales Executives": { data: salesByTRT, columns: ["Transaction", "Amount", "Date", "Status"] },
-    "Employees": { data: salesByMatches, columns: ["Match", "Players", "Revenue"] },
-    "Technicians": { data: locations, columns: ["Location", "Revenue", "Active Users"] },
-    // "Commissions": { data: commissions, columns: ["Vendor", "Commission", "Earnings"] },
-    // "Services": { data: services, columns: ["Service", "Bookings", "Rating"] },
-    // "Analytics": { data: analytics, columns: ["Metric", "Value"] },
+    "Sales Executives": {
+      data: salesContacts,
+      columns: ["Profile", "Sales ID", "Name", "Location", "Contact", "Total Sales", "Action"],
+    },
+    "Employees": {
+      data: employeeContacts,
+      columns: ["Profile", "Employee ID", "Name", "Location", "Contact", "Role", "Action"],
+    },
+    "Technicians": {
+      data: techContacts,
+      columns: ["Profile", "Tech ID", "Name", "Location", "Contact", "Expertise", "Action"],
+    },
   };
 
   // Pagination logic
@@ -135,22 +86,32 @@ const ContactAccordian = () => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className="flex flex-wrap justify-center gap-2 mb-4">
-        {Object.keys(tables).map((type) => (
-          <button
-            key={type}
-            onClick={() => {
-              setActiveTable(type);
-              setCurrentPage(1); // Reset to the first page when switching tables
-            }}
-            className={`px-4 py-2 rounded-lg transition-all duration-300 min-w-[140px] text-center ${
-              activeTable === type ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
-            }`}
-          >
-            {type}
-          </button>
-        ))}
-      </div>
+<div className="flex flex-wrap items-center gap-2 mb-4">
+  {/* Button Group - Centered */}
+  <div className="flex flex-wrap justify-center gap-2 flex-grow">
+    {Object.keys(tables).map((type) => (
+      <button
+        key={type}
+        onClick={() => {
+          setActiveTable(type);
+          setCurrentPage(1); // Reset to the first page when switching tables
+        }}
+        className={`px-4 py-2 rounded-lg transition-all duration-300 min-w-[140px] text-center ${
+          activeTable === type ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
+        }`}
+      >
+        {type}
+      </button>
+    ))}
+  </div>
+
+  {/* Search Input - Pushed to the Right */}
+  <input
+    type="text"
+    placeholder="Search"
+    className="border border-gray-800 px-4 py-2 rounded-lg"
+  />
+</div>
 
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-white rounded-lg overflow-hidden pr-8 pl-8">
@@ -164,28 +125,27 @@ const ContactAccordian = () => {
           <tbody>
             {currentRecords.map((row, rowIndex) => (
               <tr key={rowIndex} className="border-b hover:bg-gray-50 transition-all">
-                {activeTable === "All clients" ? (
-                  <>
-                    <td className="p-3"><img src={row.image} alt={row.name} className="w-10 h-10 rounded-full" /></td>
-                    <td className="p-3 text-green-950">{row.id}</td>
-                    <td className="p-3 text-gray-700">{row.name}</td>
-                    <td className="p-3 text-gray-700">{row.location}</td>
-                    <td className="p-3 text-gray-700">{row.contact}</td>
-                    <td className="p-3 text-gray-700">{row.trts}</td>
-                    <td className="p-3 space-x-2">
-                      <button className="text-blue-500 hover:text-blue-700">
-                        <FaEye />
-                      </button>
-                      <button className="text-red-500 hover:text-red-700">
-                        <FaTrash />
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  Object.values(row).map((value, colIndex) => (
-                    <td key={colIndex} className="p-3 text-gray-700">{value}</td>
-                  ))
-                )}
+                <td className="p-3">
+                  <img src={row.image} alt={row.name} className="w-10 h-10 rounded-full" />
+                </td>
+                <td className="p-3 text-green-950">{row.id}</td>
+                <td className="p-3 text-gray-700">{row.name}</td>
+                <td className="p-3 text-gray-700">{row.location}</td>
+                <td className="p-3 text-gray-700">{row.contact}</td>
+                <td className="p-3 text-gray-700">
+                  {activeTable === "Client Contacts" && row.trts}
+                  {activeTable === "Sales Executives" && row.sales}
+                  {activeTable === "Employees" && row.role}
+                  {activeTable === "Technicians" && row.expertise}
+                </td>
+                <td className="p-3 space-x-2">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <FaEye />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <FaTrash />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

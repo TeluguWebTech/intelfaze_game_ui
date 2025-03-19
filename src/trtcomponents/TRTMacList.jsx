@@ -1,84 +1,272 @@
 import React, { useState } from "react";
-
-const trtMachines = [
+const gameMachines = [
   {
-    trt_id: "TRT-001",
-    name: "TRT Vault 1",
+    machine_id: "GM-001",
+    name:"TRT-001",
+    type:"id/trt-001",
     location: "Mall Plaza",
-    status: "Active",
+    region: "North",
+    branch: "Branch A",
     vendor_id: "VND-1001",
-    installed_date: "2023-06-15",
+    status: "Active",
+    installation_date: "2023-06-15",
     last_maintenance: "2024-01-12",
-    total_cash: 50000,
+    revenue_generated: 15000,
     currency: "INR",
-    associated_machines: ["GM-001", "GM-002"],
-    notes: "Secure transaction machine with real-time monitoring.",
-    icon: "💰",
+    trt_machine_id: "TRT-001",
+    notes: "High-speed racing simulator with great engagement.",
   },
   {
-    trt_id: "TRT-002",
-    name: "TRT SecureBox",
+    machine_id: "GM-002",
+    name:"TRT-001",
+    type:"id/trt-001",
     location: "Arcade Center",
-    status: "Active",
+    region: "South",
+    branch: "Branch B",
     vendor_id: "VND-1002",
-    installed_date: "2023-08-05",
+    status: "Active",
+    installation_date: "2023-08-05",
     last_maintenance: "2024-03-01",
-    total_cash: 65000,
+    revenue_generated: 18000,
     currency: "INR",
-    associated_machines: ["GM-003"],
-    notes: "Advanced security features with cash deposit logs.",
-    icon: "🛡️",
+    trt_machine_id: "TRT-002",
+    notes: "Popular shooting game among arcade players.",
   },
   {
-    trt_id: "TRT-003",
-    name: "TRT CashSafe",
-    location: "Gaming Zone",
+    machine_id: "GM-003",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Client D - Gaming Zone",
+    region: "East",
+    branch: "Branch C",
+    vendor_id: "VND-1004",
     status: "Active",
-    vendor_id: "VND-1003",
-    installed_date: "2023-10-20",
+    installation_date: "2023-10-20",
     last_maintenance: "2024-02-10",
-    total_cash: 72000,
+    revenue_generated: 22000,
     currency: "INR",
-    associated_machines: ["GM-002", "GM-003"],
-    notes: "Monitors and records all transactions in real-time.",
-    icon: "🏦",
+    trt_machine_id: "TRT-004",
+    notes: "Highly popular among teens.",
+  },
+  {
+    machine_id: "GM-004",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Sports Complex",
+    region: "West",
+    branch: "Branch D",
+    vendor_id: "VND-1003",
+    status: "Active",
+    installation_date: "2024-01-15",
+    last_maintenance: "2024-03-10",
+    revenue_generated: 14000,
+    currency: "INR",
+    trt_machine_id: "TRT-005",
+    notes: "A VR-based boxing experience.",
+  },
+  {
+    machine_id: "GM-005",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Gaming Lounge",
+    region: "North",
+    branch: "Branch A",
+    vendor_id: "VND-1005",
+    status: "Inactive",
+    installation_date: "2023-11-10",
+    last_maintenance: "2024-02-25",
+    revenue_generated: 19500,
+    currency: "INR",
+    trt_machine_id: "TRT-006",
+    notes: "Co-op zombie shooting game with multiple levels.",
+  },
+  {
+    machine_id: "GM-006",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Entertainment Hub",
+    region: "South",
+    branch: "Branch E",
+    vendor_id: "VND-1006",
+    status: "Active",
+    installation_date: "2023-09-01",
+    last_maintenance: "2024-01-30",
+    revenue_generated: 12500,
+    currency: "INR",
+    trt_machine_id: "TRT-007",
+    notes: "Classic air hockey with multiplayer support.",
+  },
+  {
+    machine_id: "GM-007",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Gaming Arena",
+    region: "West",
+    branch: "Branch F",
+    vendor_id: "VND-1007",
+    status: "Active",
+    installation_date: "2023-07-22",
+    last_maintenance: "2024-02-15",
+    revenue_generated: 23000,
+    currency: "INR",
+    trt_machine_id: "TRT-008",
+    notes: "Battle Royale-style FPS with VR integration.",
+  },
+  {
+    machine_id: "GM-008",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Theme Park",
+    region: "East",
+    branch: "Branch G",
+    vendor_id: "VND-1008",
+    status: "Active",
+    installation_date: "2023-05-10",
+    last_maintenance: "2024-03-05",
+    revenue_generated: 27500,
+    currency: "INR",
+    trt_machine_id: "TRT-009",
+    notes: "Family-friendly kart racing with power-ups.",
+  },
+  {
+    machine_id: "GM-009",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Science Museum",
+    region: "North",
+    branch: "Branch H",
+    vendor_id: "VND-1009",
+    status: "Active",
+    installation_date: "2023-12-01",
+    last_maintenance: "2024-02-20",
+    revenue_generated: 16000,
+    currency: "INR",
+    trt_machine_id: "TRT-010",
+    notes: "VR space exploration game with interactive missions.",
+  },
+  {
+    machine_id: "GM-010",
+    name:"TRT-001",
+    type:"id/trt-001",
+    location: "Game Land",
+    region: "South",
+    branch: "Branch I",
+    vendor_id: "VND-1010",
+    status: "Active",
+    installation_date: "2023-06-25",
+    last_maintenance: "2024-01-18",
+    revenue_generated: 19000,
+    currency: "INR",
+    trt_machine_id: "TRT-011",
+    notes: "Medieval fantasy RPG with multiplayer mode.",
   },
 ];
 
-const TRTMacList = () => {
-  const [selectedTRT, setSelectedTRT] = useState(null);
+const GameMacList = () => {
+  const [selectedMachine, setSelectedMachine] = useState(null);
+  const [filteredMachines, setFilteredMachines] = useState(gameMachines);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeRegion, setActiveRegion] = useState("All");
+  const [activeBranch, setActiveBranch] = useState("All");
 
-  const openModal = (trt) => {
-    setSelectedTRT(trt);
+  const openModal = (machine) => {
+    setSelectedMachine(machine);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setTimeout(() => setSelectedTRT(null), 300);
+    setTimeout(() => setSelectedMachine(null), 300);
   };
+
+  const filterMachines = (region, branch) => {
+    let filtered = gameMachines;
+
+    if (region !== "All") {
+      filtered = filtered.filter((m) => m.region === region);
+    } else if (branch !== "All") {
+      filtered = filtered.filter((m) => m.branch === branch);
+    }
+
+    setFilteredMachines(filtered);
+  };
+
+  const handleRegionChange = (event) => {
+    const selectedRegion = event.target.value;
+    setActiveRegion(selectedRegion);
+    setActiveBranch("All"); // Reset branch when region is selected
+    filterMachines(selectedRegion, "All");
+  };
+
+  const handleBranchChange = (event) => {
+    const selectedBranch = event.target.value;
+    setActiveBranch(selectedBranch);
+    setActiveRegion("All"); // Reset region when branch is selected
+    filterMachines("All", selectedBranch);
+  };
+
+  const resetFilters = () => {
+    setFilteredMachines(gameMachines);
+    setActiveRegion("All");
+    setActiveBranch("All");
+  };
+
+  const uniqueRegions = ["Regions ", ...new Set(gameMachines.map((m) => m.region))];
+  const uniqueBranches = ["Branches", ...new Set(gameMachines.map((m) => m.branch))];
+
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-lg font-semibold">TRT Machines</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 mt-4">
-          {trtMachines.map((trt) => (
+      <div className="max-w-full mx-auto px-4 md:px-8">
+        <div className="flex justify-center gap-4 mt-4">
+          <button onClick={resetFilters} className="px-3 py-1 bg-blue-600 text-white rounded">
+            All Machines
+          </button>
+
+          {activeBranch === "All" && (
+            <select
+              value={activeRegion}
+              onChange={handleRegionChange}
+              className="px-3 py-1 border rounded bg-gray-200 text-gray-800"
+            >
+              {uniqueRegions.map((region) => (
+                <option key={region} value={region}>
+                  {region}
+                </option>
+              ))}
+            </select>
+          )}
+
+          {activeRegion === "All" && (
+            <select
+              value={activeBranch}
+              onChange={handleBranchChange}
+              className="px-3 py-1 border rounded bg-gray-200 text-gray-800"
+            >
+              {uniqueBranches.map((branch) => (
+                <option key={branch} value={branch}>
+                  {branch}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 mt-4">
+          {filteredMachines.map((machine) => (
             <div
-              key={trt.trt_id}
-              className="bg-white p-3 rounded-lg shadow-md border w-[170px] h-[160px] flex flex-col justify-between"
+              key={machine.machine_id}
+              className="bg-white p-3 rounded-lg shadow-md border w-[180px] h-[170px] flex flex-col justify-between"
             >
               <div className="flex items-center gap-1">
-                <span className="text-base">{trt.icon}</span>
-                <h3 className="text-xs font-semibold">{trt.name}</h3>
+                <span className="text-base">{machine.icon}</span>
+                <h3 className="text-xs font-semibold">{machine.name}</h3>
               </div>
-              <p className="text-xs text-gray-500">{trt.location}</p>
+              <p className="text-xs text-gray-500">{machine.type}</p>
               <p className="text-xs text-gray-700">
-                <strong>Status:</strong> {trt.status}
+                <strong>Location:</strong> {machine.location}
               </p>
               <button
-                onClick={() => openModal(trt)}
+                onClick={() => openModal(machine)}
                 className="mt-2 text-xs px-2 py-1 bg-blue-500 text-white rounded"
               >
                 See Details
@@ -86,18 +274,17 @@ const TRTMacList = () => {
             </div>
           ))}
         </div>
-      </div>
 
-      {isModalOpen && selectedTRT && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 transition-opacity opacity-100">
+      </div>
+      {isModalOpen && selectedMachine && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
           <div
             className="absolute inset-0 bg-black/30 backdrop-blur-sm"
             onClick={closeModal}
           ></div>
-
-          <div className="relative bg-white p-5 rounded-lg shadow-lg w-96 z-10 transition-transform transform scale-100">
+          <div className="relative bg-white p-5 rounded-lg shadow-lg w-96 z-10">
             <div className="flex justify-between items-center border-b pb-3">
-              <h3 className="text-lg font-semibold">{selectedTRT.name}</h3>
+              <h3 className="text-lg font-semibold">{selectedMachine.name}</h3>
               <button
                 onClick={closeModal}
                 className="text-gray-500 hover:text-gray-700 text-2xl"
@@ -106,15 +293,39 @@ const TRTMacList = () => {
               </button>
             </div>
             <div className="mt-3 space-y-2 text-sm">
-              <p><strong>ID:</strong> {selectedTRT.trt_id}</p>
-              <p><strong>Location:</strong> {selectedTRT.location}</p>
-              <p><strong>Status:</strong> {selectedTRT.status}</p>
-              <p><strong>Installed Date:</strong> {selectedTRT.installed_date}</p>
-              <p><strong>Last Maintenance:</strong> {selectedTRT.last_maintenance}</p>
-              <p><strong>Total Cash:</strong> {selectedTRT.currency} {selectedTRT.total_cash}</p>
-              <p><strong>Vendor ID:</strong> {selectedTRT.vendor_id}</p>
-              <p><strong>Associated Machines:</strong> {selectedTRT.associated_machines.join(", ")}</p>
-              <p><strong>Notes:</strong> {selectedTRT.notes}</p>
+              <p>
+                <strong>ID:</strong> {selectedMachine.machine_id}
+              </p>
+              <p>
+                <strong>Type:</strong> {selectedMachine.type}
+              </p>
+              <p>
+                <strong>Location:</strong> {selectedMachine.location}
+              </p>
+              <p>
+                <strong>Status:</strong> {selectedMachine.status}
+              </p>
+              <p>
+                <strong>Installation Date:</strong>{" "}
+                {selectedMachine.installation_date}
+              </p>
+              <p>
+                <strong>Last Maintenance:</strong>{" "}
+                {selectedMachine.last_maintenance}
+              </p>
+              <p>
+                <strong>Revenue:</strong> {selectedMachine.currency}{" "}
+                {selectedMachine.revenue_generated}
+              </p>
+              <p>
+                <strong>Vendor ID:</strong> {selectedMachine.vendor_id}
+              </p>
+              <p>
+                <strong>TRT Machine ID:</strong> {selectedMachine.trt_machine_id}
+              </p>
+              <p>
+                <strong>Notes:</strong> {selectedMachine.notes}
+              </p>
             </div>
             <div className="mt-4 flex justify-end border-t pt-3">
               <button
@@ -131,4 +342,4 @@ const TRTMacList = () => {
   );
 };
 
-export default TRTMacList;
+export default GameMacList;
