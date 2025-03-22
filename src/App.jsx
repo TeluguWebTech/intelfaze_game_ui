@@ -25,6 +25,19 @@ import BannerTransactions from './components/BannerTransactions';
 import BannerTasks from './components/BannerTasks';
 import BannerEvents from './components/BannerEvents';
 import ComingSoon from './components/ComingSoon';
+import HrDashboard from './hrmodule/HrDashboard';
+import CTDashboard from './customerrecord/CTDashboard';
+import CustomerList from './customerrecord/CustomerList';
+import CustomerEngagement from './customerrecord/CustomerEngagement';
+import SessionRecords from './customerrecord/SessionRecords';
+import CustomTracking from './customerrecord/CustomTracking';
+import FreqCustomers from './customerrecord/FreqCustomers';
+import CustFeedBack from './customerrecord/CustFeedBack';
+import BlockedCustom from './customerrecord/BlockedCustom';
+import TotalEmp from './hrmodule/TotalEmp';
+import LeaveAttandance from './hrmodule/LeaveAttandance';
+import EmpPayRol from './empcomponents/EmpPayRol';
+import PerformanceRev from './hrmodule/PerformanceRev';
 
 
 
@@ -65,8 +78,22 @@ const App = () => {
       <Route path="/tasks" element={ <BannerTasks/>} />
       <Route path="/add-event" element={ <BannerEvents/>} />
       <Route path="/inventory" element={ <ComingSoon />} />
-      <Route path="/hr" element={ <ComingSoon />} />
-      <Route path="/customers" element={ <ComingSoon />} />
+      <Route path="/hr" element={ <HrDashboard />} />
+      <Route path="/customers" element={ <CTDashboard />} />
+      <Route path="/customer-list" element={ <CustomerList />} />
+      <Route path="/customer-engagement" element={ <CustomerEngagement />} />
+      <Route path="/session-record" element={ <SessionRecords />} />
+      <Route path="/customer-activity" element={ <CustomTracking />} />
+      <Route path="/frequent-customers" element={ <FreqCustomers />} />
+      <Route path="/customer-feedback" element={ <CustFeedBack />} />
+      <Route path="/blocked-customers" element={ <BlockedCustom />} />
+      <Route path="/all-employees" element={ <TotalEmp />} />
+      <Route path="/emp-attendance" element={ <LeaveAttandance />} />
+      <Route path="/pay-rol" element={ <EmpPayRol />} />
+      <Route path="/emp-performance" element={ <PerformanceRev />} />
+      <Route path="/emp-complaints" element={ <ComingSoon />} />
+      <Route path="/emp-open-positions" element={ <ComingSoon />} />
+      <Route path="/training-sessions" element={ <ComingSoon />} />
     </Routes>
     
 

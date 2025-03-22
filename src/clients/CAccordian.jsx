@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FaEye, FaTrash } from "react-icons/fa";
-
 const getYesterdayDate = () => {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
@@ -106,7 +105,7 @@ const CAccordian = () => {
   const [selectedDate, setSelectedDate] = useState(getYesterdayDate());
   const [salesByTRT, setSalesByTRT] = useState(initialSalesByTRT);
   const [salesByMatches, setSalesByMatches] = useState(initialSalesByMatches);
-  const [salesByCommission, setSalesByCommission] = useState(initialSalesByCommission)
+  const [salesByCommission, setSalesByCommission] = useState(initialSalesByCommission);
 
   const recordsPerPage = 5;
 
@@ -127,7 +126,7 @@ const CAccordian = () => {
 
     setSalesByTRT(updatedSalesByTRT);
     setSalesByMatches(updatedSalesByMatches);
-    setSalesByCommission(updatedSalesByCommission)
+    setSalesByCommission(updatedSalesByCommission);
   }, [selectedDate]);
 
   const handleViewClient = (client) => {
@@ -143,12 +142,10 @@ const CAccordian = () => {
       data: allClients,
       columns: ["Profile", "Client ID", "Name", "Location", "Contact", "No. of TRT's", "Action"],
     },
-    "TRT Machines": { data: salesByTRT, columns: ["Trt Machine Id","Period", "Location", "Client", "Deposits", "Withdrawls", "Carrying Amount"] },
+    "TRT Machines": { data: salesByTRT, columns: ["Trt Machine Id", "Period", "Location", "Client", "Deposits", "Withdrawls", "Carrying Amount"] },
     "Game Machines": { data: salesByMatches, columns: ["Game Machine ID", "Period", "Location", "Client", "No. of Matches", "Revenue"] },
-    "Locations": { data: locations, columns: ["Locations", "Client","TRT Machines", "Game Machines", "Actions" ] },
-    "Commissions": { data: salesByCommission, columns: ["Vendor","Period", "Commission", "Earnings", "Paid", "Pending"] },
-    // "Services": { data: services, columns: ["Service", "Bookings", "Rating"] },
-    // "Analytics": { data: analytics, columns: ["Metric", "Value"] },
+    "Locations": { data: locations, columns: ["Locations", "Client", "TRT Machines", "Game Machines", "Actions"] },
+    "Commissions": { data: salesByCommission, columns: ["Vendor", "Period", "Commission", "Earnings", "Paid", "Pending"] },
   };
 
   // Pagination logic
@@ -173,118 +170,159 @@ const CAccordian = () => {
     setCurrentPage(page);
   };
 
+  // Sample table data for the modal
+  const clientDetailsTable = [
+    { metric: "Total Revenue", value: "25,000 AZN" },
+    { metric: "Total TRT's", value: selectedClient?.trts },
+    { metric: "Active Since", value: "2023-01-01" },
+    { metric: "Last Transaction", value: "2023-10-01" },
+    { metric: "Total Deposits", value: "$10,000" },
+    { metric: "Total Withdrawals", value: "$5,000" },
+  ];
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className="flex flex-wrap justify-center gap-2 mb-4">
-        <input
-          className="border border-gray-800 p-2 rounded"
-          type="date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        />
-        {Object.keys(tables).map((type) => (
-          <button
-            key={type}
-            onClick={() => {
-              setActiveTable(type);
-              setCurrentPage(1);
-            }}
-            className={`px-4 py-2 rounded-lg transition-all duration-300 min-w-[140px] text-center ${
-              activeTable === type ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
-            }`}
-          >
-            {type}
-          </button>
-        ))}
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse bg-white rounded-lg overflow-hidden pr-8 pl-8">
-          <thead>
-            <tr className="bg-orange-500 text-white text-left">
-              {tables[activeTable].columns.map((col, index) => (
-                <th key={index} className="p-3 font-semibold">{col}</th>
-              ))}
-            </tr>
-          </thead>
-         <tbody>
-                   {currentRecords.map((row, rowIndex) => (
-                     <tr key={rowIndex} className="border-b hover:bg-gray-50 transition-all">
-                       {activeTable === "All clients" ? (
-                         <>
-                           <td className="p-3 cursor-pointer"  onClick={() => handleViewClient(row)}><img src={row.image} alt={row.name} className="w-10 h-10 rounded-full" /></td>
-                           <td className="p-3 text-green-950 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.id}</td>
-                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.name}</td>
-                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.location}</td>
-                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.contact}</td>
-                           <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.trts}</td>
-                           <td className="p-3 space-x-2">
-                             <button className="text-blue-500 hover:text-blue-700" onClick={() => handleViewClient(row)}>
-                               <FaEye />
-                             </button>
-                             <button className="text-red-500 hover:text-red-700">
-                               <FaTrash />
-                             </button>
-                           </td>
-                         </>
-                       ) : (
-                         Object.values(row).map((value, colIndex) => (
-                           <td key={colIndex} className="p-3 text-gray-700">{value}</td>
-                         ))
-                       )}
-                     </tr>
-                   ))}
-                 </tbody>
-               </table>
-             </div>
-       
-             {/* Pagination Controls */}
-             <div className="flex justify-center items-center gap-2 mt-4">
-               <button
-                 onClick={handlePreviousPage}
-                 disabled={currentPage === 1}
-                 className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
-               >
-                 Previous
-               </button>
-               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                 <button
-                   key={page}
-                   onClick={() => handlePageChange(page)}
-                   className={`px-4 py-2 rounded-lg ${
-                     currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
-                   }`}
-                 >
-                   {page}
-                 </button>
+       <div className="flex flex-wrap justify-center gap-2 mb-4">
+         <input
+           className="border border-gray-800 p-2 rounded"
+           type="date"
+           value={selectedDate}
+           onChange={(e) => setSelectedDate(e.target.value)}
+         />
+         {Object.keys(tables).map((type) => (
+           <button
+             key={type}
+             onClick={() => {
+               setActiveTable(type);
+               setCurrentPage(1);
+             }}
+             className={`px-4 py-2 rounded-lg transition-all duration-300 min-w-[140px] text-center ${
+               activeTable === type ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
+             }`}
+           >
+             {type}
+           </button>
+         ))}
+       </div>
+ 
+       <div className="overflow-x-auto">
+         <table className="w-full border-collapse bg-white rounded-lg overflow-hidden pr-8 pl-8">
+           <thead>
+             <tr className="bg-orange-500 text-white text-left">
+               {tables[activeTable].columns.map((col, index) => (
+                 <th key={index} className="p-3 font-semibold">{col}</th>
                ))}
-               <button
-                 onClick={handleNextPage}
-                 disabled={currentPage === totalPages}
-                 className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
-               >
-                 Next
-               </button>
-             </div>
-       
-             {/* Modal for Client Details */}
-             {selectedClient && (
-               <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                 <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                   <h2 className="text-xl font-semibold mb-2">Client Details</h2>
-                   <img src={selectedClient.image} alt={selectedClient.name} className="w-20 h-20 rounded-full mx-auto" />
-                   <p className="mt-3"><strong>Name:</strong> {selectedClient.name}</p>
-                   <p><strong>Location:</strong> {selectedClient.location}</p>
-                   <p><strong>Contact:</strong> {selectedClient.contact}</p>
-                   <p><strong>No. of TRT's:</strong> {selectedClient.trts}</p>
-                   <button className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onClick={handleCloseModal}>
-                     Close
-                   </button>
-                 </div>
-               </div>
-             )}
-           </div>
-         );
-       };
-       
-       export default CAccordian;
+             </tr>
+           </thead>
+          <tbody>
+                    {currentRecords.map((row, rowIndex) => (
+                      <tr key={rowIndex} className="border-b hover:bg-gray-50 transition-all">
+                        {activeTable === "All clients" ? (
+                          <>
+                            <td className="p-3 cursor-pointer"  onClick={() => handleViewClient(row)}><img src={row.image} alt={row.name} className="w-10 h-10 rounded-full" /></td>
+                            <td className="p-3 text-green-950 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.id}</td>
+                            <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.name}</td>
+                            <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.location}</td>
+                            <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.contact}</td>
+                            <td className="p-3 text-gray-700 cursor-pointer"  onClick={() => handleViewClient(row)}>{row.trts}</td>
+                            <td className="p-3 space-x-2">
+                              <button className="text-blue-500 hover:text-blue-700" onClick={() => handleViewClient(row)}>
+                                <FaEye />
+                              </button>
+                              <button className="text-red-500 hover:text-red-700">
+                                <FaTrash />
+                              </button>
+                            </td>
+                          </>
+                        ) : (
+                          Object.values(row).map((value, colIndex) => (
+                            <td key={colIndex} className="p-3 text-gray-700">{value}</td>
+                          ))
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+        
+              {/* Pagination Controls */}
+              <div className="flex justify-center items-center gap-2 mt-4">
+                <button
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
+                >
+                  Previous
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`px-4 py-2 rounded-lg ${
+                      currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+                <button
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
+                >
+                  Next
+                </button>
+              </div>
+
+      {/* Modal for Client Details */}
+      {selectedClient && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-6xl"> {/* Wider modal */}
+            <h2 className="text-xl font-semibold mb-4">Client Details</h2>
+            <div className="flex items-center mb-6">
+              <img
+                src={selectedClient.image}
+                alt={selectedClient.name}
+                className="w-20 h-20 rounded-full mr-4"
+              />
+              <div>
+                <p className="text-lg font-semibold">{selectedClient.name}</p>
+                <p className="text-sm text-gray-600">{selectedClient.location}</p>
+                <p className="text-sm text-gray-600">{selectedClient.contact}</p>
+              </div>
+            </div>
+
+            {/* Table inside the modal */}
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="p-3 text-left">Metric</th>
+                    <th className="p-3 text-left">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clientDetailsTable.map((row, index) => (
+                    <tr key={index} className="border-b">
+                      <td className="p-3 text-gray-700">{row.metric}</td>
+                      <td className="p-3 text-gray-700">{row.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <button
+              className="mt-6 px-4 py-2 bg-red-500 text-white rounded-md w-full hover:bg-red-600"
+              onClick={handleCloseModal}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CAccordian;
